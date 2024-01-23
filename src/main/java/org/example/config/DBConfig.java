@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.entity.Cat;
 import org.example.entity.Person;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -22,9 +23,10 @@ public class DBConfig {
             properties.setProperty(Environment.SHOW_SQL, "true");
             properties.setProperty(Environment.DRIVER, "org.postgresql.Driver");
             properties.setProperty(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-            properties.setProperty(Environment.HBM2DDL_AUTO, "validate");
+            properties.setProperty(Environment.HBM2DDL_AUTO, "create");
             configuration.setProperties(properties);
             configuration.addAnnotatedClass(Person.class);
+            configuration.addAnnotatedClass(Cat.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties())
                     .build();

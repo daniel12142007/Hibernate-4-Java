@@ -1,9 +1,8 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Person {
@@ -12,6 +11,19 @@ public class Person {
     private Long id;
     private String name;
     private int age;
+    @ManyToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Cat> cat;
+    @OneToOne(mappedBy = "person1")
+
+    private Cat cats;
+
+    public List<Cat> getCat() {
+        return cat;
+    }
+
+    public void setCat(List<Cat> cat) {
+        this.cat = cat;
+    }
 
     public Long getId() {
         return id;
